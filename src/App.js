@@ -1,9 +1,13 @@
 import React from 'react';
 import './styles.css';
+import MainComponent from './Components/MainComponent';
 
 function App() {
   return (
-    <p>e eu pago em cabeça de gado - wellison</p>
+    <>
+      <MainComponent />
+
+    </>
   );
 }
 
