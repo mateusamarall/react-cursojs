@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
 import './styles.css';
-
-// export default class MainComponent extends Component {
-//   render() {
-//     return <h1>meu estado</h1>;
-//   }
-// }
+import './form.css';
 
 function MainComponent() {
   const [tarefas, setTarefas] = useState('');
+  console.log(tarefas);
 
   return (
     <div className="container">
       <h1>LISTA DE TAREFAS</h1>
-      <form action="#">
-        <input type="text" onChange={(text) => setTarefas(text.target.value)} />
-        <button type="submit">ENVIAR</button>
-        <p>{tarefas}</p>
+      <form action="#" className="form">
+        <input
+          type="text"
+          value={tarefas}
+          onChange={(text) => setTarefas(text.target.value)}
+        />
+        <button type="submit">
+
+          <FaPlus color="#FFF" />
+
+        </button>
+
       </form>
     </div>
   );
