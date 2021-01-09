@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { FaPlus, FaEdit, FaWindowClose } from 'react-icons/fa';
 import './styles.css';
 import './form.css';
 
 function MainComponent() {
   const [tarefas, setTarefas] = useState('');
-  console.log(tarefas);
+  const [tarefaFicticia, setTarefasFicticia] = useState([]);
+
+  const data = [
+    'fazer café',
+    'beber água',
+    'Estudar',
+  ];
+
+  useEffect(() => {
+    setTarefasFicticia(data);
+  }, []);
 
   return (
     <div className="container">
@@ -23,6 +33,20 @@ function MainComponent() {
         </button>
 
       </form>
+
+      <ul className="tarefas">
+        {
+          tarefaFicticia.map((tarefa) => (
+            <li key={tarefa}>
+              {tarefa}
+              <div>
+                <FaEdit className="edit" color="#51c5de" />
+                <FaWindowClose className="delete" color="#F04C64" />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   );
 }

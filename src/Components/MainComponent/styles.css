@@ -11,3 +11,26 @@
   font-size: 20px;
   text-align: center;
 }
+
+.tarefas{
+  margin-top: 30px;
+}
+
+.tarefas li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10PX;
+
+}
+.tarefas li:hover{
+  background: #CCC;
+  transition: all 400ms;
+}
+
+.tarefas li .edit, .tarefas li .delete{
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+
