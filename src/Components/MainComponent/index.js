@@ -5,16 +5,25 @@ import './form.css';
 
 function MainComponent() {
   const [tarefas, setTarefas] = useState('');
-  const [tarefaFicticia, setTarefasFicticia] = useState([]);
+  const [tarefasFicticia, setTarefasFicticia] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     tarefas.trim();
-    if (tarefaFicticia.indexOf(tarefas) !== -1) return;
-    const novatarefas = [...tarefaFicticia];
+    if (tarefasFicticia.indexOf(tarefas) !== -1) return;
+    const novatarefas = [...tarefasFicticia];
 
     setTarefasFicticia([...novatarefas, tarefas]);
+  }
+  function handleDeleteTarefa(e, index) {
+    const novatarefas = [...tarefasFicticia];
+    novatarefas.splice(index, 1);
+    setTarefasFicticia([...novatarefas]);
+  }
+
+  function handleEditTarefa(e, index) {
+    console.log(index);
   }
 
   return (
@@ -36,12 +45,12 @@ function MainComponent() {
 
       <ul className="tarefas">
         {
-          tarefaFicticia.map((tarefa) => (
+          tarefasFicticia.map((tarefa, index) => (
             <li key={tarefa}>
               {tarefa}
               <span>
-                <FaEdit className="edit" color="#51c5de" />
-                <FaWindowClose className="delete" color="#F04C64" />
+                <FaEdit className="edit" color="#51c5de" onClick={handleEditTarefa} />
+                <FaWindowClose className="delete" color="#F04C64" onClick={(e) => handleDeleteTarefa(e, index)} />
               </span>
             </li>
           ))
