@@ -6,15 +6,22 @@ import './form.css';
 function MainComponent() {
   const [tarefas, setTarefas] = useState('');
   const [tarefasFicticia, setTarefasFicticia] = useState([]);
+  const [indexTarefa, setIndexTarefa] = useState(-1);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     tarefas.trim();
     if (tarefasFicticia.indexOf(tarefas) !== -1) return;
-    const novatarefas = [...tarefasFicticia];
-
-    setTarefasFicticia([...novatarefas, tarefas]);
+    const novastarefas = [...tarefasFicticia];
+    if (indexTarefa === -1) {
+      setTarefasFicticia([...novastarefas, tarefas]);
+      setTarefas('');
+    } else {
+      novastarefas[indexTarefa] = tarefas;
+      setTarefasFicticia([...novastarefas]);
+      setIndexTarefa(-1);
+    }
   }
   function handleDeleteTarefa(e, index) {
     const novatarefas = [...tarefasFicticia];
@@ -23,7 +30,8 @@ function MainComponent() {
   }
 
   function handleEditTarefa(e, index) {
-    console.log(index);
+    setIndexTarefa(index);
+    setTarefas(tarefasFicticia[index]);
   }
 
   return (
@@ -49,7 +57,7 @@ function MainComponent() {
             <li key={tarefa}>
               {tarefa}
               <span>
-                <FaEdit className="edit" color="#51c5de" onClick={handleEditTarefa} />
+                <FaEdit className="edit" color="#51c5de" onClick={(e) => handleEditTarefa(e, index)} />
                 <FaWindowClose className="delete" color="#F04C64" onClick={(e) => handleDeleteTarefa(e, index)} />
               </span>
             </li>
