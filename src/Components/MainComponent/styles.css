@@ -16,12 +16,15 @@
   margin-top: 30px;
 }
 
+.tarefas li span{
+  display: flex;
+  align-items: center;
+}
 .tarefas li{
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10PX;
-
 }
 .tarefas li:hover{
   background: #CCC;
