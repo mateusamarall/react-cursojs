@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPlus, FaEdit, FaWindowClose } from 'react-icons/fa';
 import './styles.css';
 import './form.css';
@@ -33,6 +33,16 @@ function MainComponent() {
     setIndexTarefa(index);
     setTarefas(tarefasFicticia[index]);
   }
+
+  useEffect(() => {
+    localStorage.setItem('tarefas_usuario', JSON.stringify(tarefasFicticia));
+  }, [tarefasFicticia]);
+  const data = JSON.parse(localStorage.getItem('tarefas_usuario'));
+  useEffect(() => {
+    if (data) {
+      setTarefasFicticia(data);
+    }
+  }, []);
 
   return (
     <div className="container">
